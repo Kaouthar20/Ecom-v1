@@ -24,18 +24,23 @@ public class EcomV1Application  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		categoryRepository.save(new Category(null,"Computers",null,null));
-		categoryRepository.save(new Category(null,"Printers",null,null));
-		categoryRepository.save(new Category(null,"SmartPhons",null,null));
+		categoryRepository.save(new Category(null,"Computers",null,null,null));
+		categoryRepository.save(new Category(null,"Printers",null,null,null));
+		categoryRepository.save(new Category(null,"SmartPhons",null,null,null));
 		Random rnd=new Random();
 		categoryRepository.findAll().forEach(c ->{
-		Product p=new Product();
-		p.setName(RandomString.make(18));
-		p.setCurrentPrice(100+rnd.nextInt(10000));
-        p.setAvailable(rnd.nextBoolean());
-        p.setPromotion(rnd.nextBoolean());
-        p.setCategory(c);
-        productRepository.save(p);
+			for (int i = 0; i <10 ; i++) {
+				Product p=new Product();
+				p.setName(RandomString.make(18));
+				p.setCurrentPrice(100+rnd.nextInt(10000));
+				p.setAvailable(rnd.nextBoolean());
+				p.setPromotion(rnd.nextBoolean());
+				p.setSelected(rnd.nextBoolean());
+				p.setCategory(c);
+				p.setPhotoName("unknown.png");
+				productRepository.save(p);
+			}
+
 		} );
 	}
 }
