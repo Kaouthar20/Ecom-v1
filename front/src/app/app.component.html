@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-black bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link clickable"  (click)="onSelectedProducts()">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -33,12 +33,15 @@
     </form>
   </div>
 </nav>
-<div class="containar mt-5">
+<div class="containar-fluid mt-5">
   <div class="row">
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <ul class="list-group" *ngIf="categories">
-      <li class="list-group-item" *ngFor="let c of categories._embedded.categories">
-        {{c.name}}</li>
+      <li [ngClass]="currentCategory==c?'active':''"  (click)="getProductByCategory(c)" class="list-group-item clickable" *ngFor="let c of categories._embedded.categories">
+      
+         {{c.name}}
+       
+      </li>
     </ul>
   </div>
   <div class="col-lg-6">

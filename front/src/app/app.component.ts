@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
  categories: any;
+ currentCategory : any;
+  selectedProducts: any;
 constructor( private catalogService : CatalogueService, private router :Router){
  
 }
@@ -17,7 +19,7 @@ constructor( private catalogService : CatalogueService, private router :Router){
    this.getCategories();
   }
   private getCategories() {
-  this.catalogService.getResource("/categories")
+  this.catalogService.getResource('/categories')
   .subscribe(data=> {
     this.categories=data;
   },err=>{
@@ -27,7 +29,11 @@ constructor( private catalogService : CatalogueService, private router :Router){
   );
   }
   getProductByCategory(c){
-
-    this.router.navigateByUrl('/products/2/'+c.id)
+this.currentCategory=c;
+    this.router.navigateByUrl('/products/2/'+c.id);
+  }
+  onSelectedProducts(){
+    this.currentCategory=undefined;
+    this.router.navigateByUrl("/products/1/0");
   }
 }

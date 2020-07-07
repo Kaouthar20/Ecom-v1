@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogueService } from '../catalogue.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-products',
@@ -14,19 +15,39 @@ public products;
 
 
   constructor(public catalogService : CatalogueService,
-     private rout : ActivatedRoute) { }
+     private route : ActivatedRoute, private router : Router) { 
+
+    }
+  
+     
 
   ngOnInit(): void {
-   
-      this.getProducts();
-    }
-
-  
     
+    //beaucoup d'evenement se produit dans le retour
+    this.router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        let url = val.url;
+        console.log(url);
+        let p1=this.route.snapshot.params.p1;
+
+if(p1==1){
+//all productes
+this.getProducts('/products/search/selectedProducts');
+}
+else if(p1==2){
+let idCat=this.route.snapshot.params.p2;
+// recuperer la liste des produits de category
+this.getProducts('/categories/'+idCat+'/products');
+}
+       //console.log(this.activatedRoute.snapshot.data['asdf']); // data is defined but asdf is not :(
+      }
+    });
+    }
+   
   
 
- private getProducts(){
-   this.catalogService.getResource('/products/search/selectedProducts')
+ private getProducts(url){
+   this.catalogService.getResource(url)
    .subscribe(data=>{
      this.products=data;
    }), (err: any) =>{
