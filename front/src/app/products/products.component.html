@@ -1,18 +1,25 @@
 
-    
-        <div  *ngIf="products"> 
-            <div  *ngFor="let p of products._embedded.products">
-                <div class="row">
-            <div class="col-lg-4 ">
-                
-    <div class="card" style="width: 18rem;"  >
-        <img class="card-img-top" src="..." alt="Card image cap">
+     
+
+       
+
+<div class="container-fluid"> 
+  
+
+      <div  *ngIf="products">
+
+
+      <div class="col-lg-4 col-sm-10 mx-auto mb-5"  *ngFor="let p of products._embedded.products"> 
+      
+    <div class="card my-3 mx-3" style="width: 18rem;"  >
+     
+        <img class="card-img-top" src="{{this.catalogService.host +'/photoProduct/'+ p.id}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title" >{{p.name}}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p class="card-text">{{p.description}}</p>
+          <a href="#" class="btn btn-primary">{{p.currentPrice | number : '0.2' }}</a>
         </div>
       </div>
+    </div></div>
     </div>
-    </div>
-</div></div>
+

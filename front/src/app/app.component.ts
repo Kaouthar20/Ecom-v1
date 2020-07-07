@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { CatalogueService } from './catalogue.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { CatalogueService } from './catalogue.service';
 })
 export class AppComponent implements OnInit{
  categories: any;
-constructor( private catalogService : CatalogueService){
+constructor( private catalogService : CatalogueService, private router :Router){
  
 }
 
@@ -25,5 +26,8 @@ constructor( private catalogService : CatalogueService){
   }
   );
   }
+  getProductByCategory(c){
 
+    this.router.navigateByUrl('/products/2/'+c.id)
+  }
 }

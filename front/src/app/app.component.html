@@ -34,12 +34,13 @@
   </div>
 </nav>
 <div class="containar mt-5">
-  <div class="col-md-3">
+  <div class="col-lg-4">
     <ul class="list-group" *ngIf="categories">
-      <li class="list-group-item" *ngFor="let c of categories._embedded.categories"> {{c.name}}</li>
+      <li class="list-group-item" *ngFor="let c of categories._embedded.categories">
+         <a (click)="getProductByCategory(c)">{{c.name}}</a></li>
     </ul>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-3">
 <router-outlet>
 
 </router-outlet>
