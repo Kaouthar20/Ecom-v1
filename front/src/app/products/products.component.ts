@@ -17,21 +17,16 @@ public products;
      private rout : ActivatedRoute) { }
 
   ngOnInit(): void {
-    let p1=this.rout.snapshot.params.p1;
    
-    if (p1==1){
-      this.getProducts('/products/search/selectedProducts');
+      this.getProducts();
     }
-  else if(p1==2){
-    let idCat=this.rout.snapshot.params.p2;
-this.getProducts('/categories/'+idCat +'/products');
-  }
+
   
     
-  }
+  
 
- private getProducts(url){
-   this.catalogService.getResource(url)
+ private getProducts(){
+   this.catalogService.getResource('/products/search/selectedProducts')
    .subscribe(data=>{
      this.products=data;
    }), (err: any) =>{

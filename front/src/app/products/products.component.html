@@ -1,17 +1,14 @@
 
      
 
-       
-
-<div class="container-fluid"> 
-  
+      
 
       <div  *ngIf="products">
 
 
-      <div class="col-lg-4 col-sm-10 mx-auto mb-5"  *ngFor="let p of products._embedded.products"> 
+      <div class="col-lg-3  d-inline-block my-3 "  *ngFor="let p of products._embedded.products"> 
       
-    <div class="card my-3 mx-3" style="width: 18rem;"  >
+    <div class="card my-auto mx-auto "  style="width: 200px;">
      
         <img class="card-img-top" src="{{this.catalogService.host +'/photoProduct/'+ p.id}}" alt="Card image cap">
         <div class="card-body">
@@ -20,6 +17,6 @@
           <a href="#" class="btn btn-primary">{{p.currentPrice | number : '0.2' }}</a>
         </div>
       </div>
-    </div></div>
+    </div>
     </div>
 
