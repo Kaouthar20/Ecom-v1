@@ -10,6 +10,9 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 public products;
+ public editPhoto : boolean;
+  currentProduct: any;
+  selctedFiles:any;
 
 
 
@@ -54,6 +57,13 @@ this.getProducts('/categories/'+idCat+'/products');
      console.log(err);
    }
      
+   }
+   onEditPhoto(p){
+     this.currentProduct=p;
+     this.editPhoto=true;
+   }
+   onSelectedFile(event){
+     this.selctedFiles=event.tagrget.files;
    }
  }
 
