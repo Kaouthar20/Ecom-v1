@@ -13,20 +13,19 @@
           <h5 class="card-title" >{{p.name}}</h5>
           <p class="card-text">{{p.description}}</p>
           <a href="#" class="btn btn-primary">{{p.currentPrice | number : '0.2' }}</a>
-
+          <div>
           <p class="mt-2">
-            <button >
+            <button (onclick)="onEditPhoto(p)">
            
-             
-                
-                <i class="fa fa-edit fa-2x" (onclick)="onEditPhoto(p)"></i>
-             
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
+              </span>
           </button>
         </p>
-        
          <p *ngIf="editPhoto==true && currentProduct==p">
            <input type="file" (change)="onSelectedFile($event)">
-        </p>
+        </p></div>
         </div>
       </div>
     </div>

@@ -11,8 +11,8 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 export class ProductsComponent implements OnInit {
 public products;
  public editPhoto : boolean;
-  currentProduct: any;
-  selctedFiles:any;
+  currentProduct : any;
+  selctedFiles : any;
 
 
 
